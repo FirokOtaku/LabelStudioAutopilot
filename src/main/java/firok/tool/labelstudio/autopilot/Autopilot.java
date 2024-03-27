@@ -33,7 +33,7 @@ public class Autopilot
     public static final ProgramMeta META = new ProgramMeta(
             "firok.tool.labelstudioautopilot",
             "Label Studio Autopilot",
-            new Version(0, 2, 0),
+            new Version(0, 3, 0),
             "",
             List.of("Firok"),
             List.of("https://github.com/FirokOtaku/LabelStudioAutopilot"),
@@ -55,6 +55,7 @@ public class Autopilot
                 .enable(JsonReadFeature.ALLOW_LEADING_DECIMAL_POINT_FOR_NUMBERS)
                 .build();
     }
+
     public static void main(String[] args) throws Exception
     {
         System.out.println("Label Studio Autopilot");
@@ -102,13 +103,15 @@ public class Autopilot
 
                 // 启动一个 detectron2 实例
                 try(var pool = Executors.newFixedThreadPool(6);
-                    var wheel = new InferenceWheel(
+                    var wheelInference = new InferenceWheel(
                             config.pathDetectron,
                             config.pathDetectronConfig,
                             config.pathFileModel,
                             config.portDetectron
                     ))
                 {
+                    var wheelSimplify = new SimplifyWheel(config);
+
                     for(var taskId : listTaskId)
                     {
                         pool.submit(() ->{
@@ -153,7 +156,7 @@ public class Autopilot
                                 File fileResult;
                                 try
                                 {
-                                    fileResult = wheel.inference(fileImage);
+                                    fileResult = wheelInference.inference(fileImage);
                                 }
                                 catch (Exception any)
                                 {
@@ -224,7 +227,8 @@ public class Autopilot
                                         var categoryName = mappingCategory.get(categoryIndex);
                                         var valueLabels = omTask.createArrayNode().add(categoryName);
                                         value.set("polygonlabels", valueLabels);
-                                        var shape = response.predShapes.get(stepShape).get(0); // 只获取外圈的数据
+                                        var shapeRaw = response.predShapes.get(stepShape).get(0); // 只获取外圈的数据
+                                        var shape = wheelSimplify.simplify(shapeRaw); // 简化多边形
                                         var countPoint = sizeOf(shape) / 2;
                                         var valuePoints = omTask.createArrayNode();
                                         for(var stepPoint = 0; stepPoint < countPoint; stepPoint++)
@@ -260,7 +264,7 @@ public class Autopilot
                                 bean.setUniqueId(UUID.randomUUID().toString());
                                 bean.setResult(result);
                                 bean.setLastAction(AnnotationActionEnum.submitted);
-                                System.out.println("任务 " + taskId + " 创建的标注为: " + bean);
+//                                System.out.println("任务 " + taskId + " 创建的标注为: " + bean);
 
                                 // 调用 Label Studio 接口, 删除已有标注, 创建新标注
                                 var listAnno = conn.Annotations.getAllTaskAnnotations(taskId);
