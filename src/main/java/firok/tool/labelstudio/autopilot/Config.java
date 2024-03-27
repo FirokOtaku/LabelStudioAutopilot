@@ -44,10 +44,15 @@ public class Config
 
     String pathFileModel;
 
-    String pathFolderDataset;
+    String pathFileDataset;
 
     /**
      * 启动 detectron2 的端口
      * */
     int portDetectron;
+
+    /**
+     * 结果简化距离
+     * */
+    int simplifyDistance;
 }

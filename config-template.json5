@@ -1,0 +1,39 @@
+{
+  // 准备连接的 Label Studio 服务
+  // the Label Studio you want to integrate with
+  url: 'http://localhost:8080',
+  // 用户 token
+  // user token
+  token: '123',
+  // ListProject - 列出有多少个标注项目; ListTask - 列出 ID 为 projectId 的项目下有多少标注任务; Annotate - 对 listTaskId 里的标注任务进行标注
+  // ListProject - list all projects; ListTask - list all tasks in project which in ID of projectId; Annotate - annotate tasks in listTaskId
+  mode: 'Annotate',
+  projectId: 14,
+  listTaskId: [1616, 1617, 1618, 1619, 1620],
+  // 标注项目时, 使用哪个用户作为标注用户
+  // the user ID used to fill `completed_by` field
+  uid: 4,
+
+  // 图片缓存目录
+  // folder for image caches
+  folderCache: './cache',
+  // 启动本地 Detectron2 实例的端口号
+  // port number for running local Detectron2 service
+  portDetectron: 39129,
+  // Detectron2 根目录
+  // root folder of Detectron2
+  pathDetectron: './detectron2',
+  // Detectron2 配置文件
+  // Detectron2 config file
+  pathDetectronConfig: './detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml',
+  // Detectron2 模型文件
+  // Detectron2 model file
+  pathFileModel: './detectron2/output/model_final.pth',
+  // COCO 数据集文件
+  // COCO dataset file
+  pathFileDataset: './coco.json',
+
+  // 用于简化标注结果多边形的距离参数
+  // distance parameter for simplifying the predicted polygons
+  simplifyDistance: 6,
+}

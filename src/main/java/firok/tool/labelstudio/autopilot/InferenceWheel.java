@@ -61,7 +61,7 @@ public class InferenceWheel implements MustCloseable
                 .callTimeout(timeout)
                 .readTimeout(timeout)
                 .build();
-        Threads.sleep(10000);
+        Threads.sleep(15000); // 等待 Detectron2 Web 服务启动完成
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::close));
     }
