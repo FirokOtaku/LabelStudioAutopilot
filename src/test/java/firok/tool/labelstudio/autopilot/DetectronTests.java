@@ -29,21 +29,23 @@ public class DetectronTests
     @Test
     void testGetTaskApi() throws Exception
     {
-        var task = conn.Tasks.getTask(config.listTaskId.get(0));
+        var listTaskId = config.getListTaskId();
+        var task = conn.Tasks.getTask(listTaskId.get(0));
         System.out.println("task: " + task);
     }
 
     @Test
     void testGetTaskListApi()
     {
-        var list = conn.Tasks.getTasksList(config.projectId, null);
+        var list = conn.Tasks.getTasksList(config.getProjectId(), null);
         System.out.println(list);
     }
 
     @Test
     void testGetAnnoApi()
     {
-        var list = conn.Annotations.getAllTaskAnnotations(config.listTaskId.get(0));
+        var listTaskId = config.getListTaskId();
+        var list = conn.Annotations.getAllTaskAnnotations(listTaskId.get(0));
         System.out.println(Arrays.asList(list));
     }
 }

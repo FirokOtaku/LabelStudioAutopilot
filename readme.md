@@ -33,3 +33,6 @@
 > * [Label Studio Connector Java](https://github.com/FirokOtaku/LabelStudioConnectorJava)
 > * [Topaz](https://github.com/FirokOtaku/Topaz)
 > * [Alloy Wrench](https://github.com/FirokOtaku/AlloyWrench)
+
+如果以 `AnnotateServer` 模式启动, 默认端口为 `39270`.  
+推荐配合 [Candy Pot](https://github.com/FirokOtaku/CandyPot) 中的 `label-studio-optimizer.user.js` 追加的快捷键使用.

@@ -31,7 +31,11 @@ public class Config
     /**
      * 要处理的任务 id
      * */
-    List<Long> listTaskId;
+    String listTaskId;
+    public List<Long> getListTaskId()
+    {
+        return ParamWheel.readTaskId(listTaskId);
+    }
 
     /**
      * 缓存目录
@@ -55,4 +59,9 @@ public class Config
      * 结果简化距离
      * */
     int simplifyDistance;
+
+    /**
+     * 用于启动推理服务器的端口
+     * */
+    int portServer;
 }

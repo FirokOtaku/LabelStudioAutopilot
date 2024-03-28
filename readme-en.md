@@ -32,3 +32,6 @@ Open source under Mulan PSL v2 license.
 > * [Label Studio Connector Java](https://github.com/FirokOtaku/LabelStudioConnectorJava)
 > * [Topaz](https://github.com/FirokOtaku/Topaz)
 > * [Alloy Wrench](https://github.com/FirokOtaku/AlloyWrench)
+
+If started in `AnnotateServer` mode, the default port is `39270`.
+It is recommended to use the additional shortcuts provided by `label-studio-optimizer.user.js` in [Candy Pot](https://github.com/FirokOtaku/CandyPot).

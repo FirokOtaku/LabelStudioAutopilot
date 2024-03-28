@@ -5,8 +5,14 @@
   // 用户 token
   // user token
   token: '123',
-  // ListProject - 列出有多少个标注项目; ListTask - 列出 ID 为 projectId 的项目下有多少标注任务; Annotate - 对 listTaskId 里的标注任务进行标注
-  // ListProject - list all projects; ListTask - list all tasks in project which in ID of projectId; Annotate - annotate tasks in listTaskId
+  // ListProject - 列出有多少个标注项目;
+  // ListTask - 列出 ID 为 projectId 的项目下有多少标注任务;
+  // Annotate - 对 listTaskId 里的标注任务进行标注
+  // AnnotateServer - 以服务器模式启动
+  // ListProject - list all projects;
+  // ListTask - list all tasks in project which in ID of projectId;
+  // Annotate - annotate tasks in listTaskId
+  // AnnotateServer - start as server
   mode: 'Annotate',
   projectId: 14,
   listTaskId: [1616, 1617, 1618, 1619, 1620],
@@ -36,4 +42,8 @@
   // 用于简化标注结果多边形的距离参数
   // distance parameter for simplifying the predicted polygons
   simplifyDistance: 6,
+
+  // 用于启动推理服务器的端口
+  // port number for starting inference server
+  portServer: 39270,
 }

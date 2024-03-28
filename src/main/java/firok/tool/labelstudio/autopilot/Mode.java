@@ -16,4 +16,9 @@ public enum Mode
      * 对指定任务做标注
      * */
     Annotate,
+
+    /**
+     * 以服务器模式启动
+     * */
+    AnnotateServer,
 }
